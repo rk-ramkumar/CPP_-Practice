@@ -1,0 +1,85 @@
+# Compiled Object files
+*.obj
+*.o
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.dll
+*.so
+*.dylib
+
+# Static libraries
+*.lib
+*.a
+
+# Executable files
+*.exe
+*.out
+*.app
+
+# VS Code configuration files
+.vscode/
+
+# Visual Studio folders and files
+.vs/
+!/.vs/ProjectSettings.json  # Optional: Keep specific project settings if needed
+
+# Build directories (adjust if your project has custom build paths)
+Release/
+Debug/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Bb][Uu][Ii][Ll][Dd]/
+
+# Microsoft generated files
+*.ipch
+*.pdb
+*.opendb
+*.log
+
+# Visual Studio database files
+*.sdf
+*.sqlite
+
+# Visual Studio Code Coverage and Test Results
+*.coverage
+*.coveragexml
+TestResults/
+
+# NUGET packages
+packages/
+.nuget/
+
+# Windows-specific files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Build Logs
+*.log
+
+# Directories for temporary files
+temp/
+tmp/
+
+# Crash reports
+*.mdmp
+
+# CMake Files
+CMakeFiles/
+CMakeCache.txt
+CMakeScripts/
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates

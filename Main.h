@@ -1,6 +1,5 @@
 #pragma once
-#include "VariablesAndDataTypes.h"
-#include "Conditionals.h"
+#include "Basics.h"
 
 class Main
 {

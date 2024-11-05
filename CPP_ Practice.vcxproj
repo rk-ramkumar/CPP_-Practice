@@ -127,14 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Conditionals.h" />
+    <ClInclude Include="Basics.h" />
     <ClInclude Include="Main.h" />
-    <ClInclude Include="VariablesAndDataTypes.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Conditionals.cpp" />
+    <ClCompile Include="Basics.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="VariablesAndDataTypes.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,14 +2,18 @@
 #include <iostream>
 #include <cstdio>
 
-int main() {
-	int a = 10;
-	int b = 20;
-	VariablesAndDataTypes::swap_two_numbers(a, b, false);
-	std::cout << "A" << a << "B" << b << "\n";
-	VariablesAndDataTypes::swap_two_numbers(a, b);
-	std::cout << "A" << a << "B" << b << "\n";
-	return 0;
+namespace print {
+
+	void Fn::swap_two_numbers()
+	{
+		int a = 10;
+		int b = 20;
+		VariablesAndDataTypes::swap_two_numbers(a, b, false);
+		std::cout << "A " << a << "B " << b << "\n";
+		VariablesAndDataTypes::swap_two_numbers(a, b);
+		printf("A: %d, B: %d \n", a, b);
+	};
+
 }
 
 void VariablesAndDataTypes::swap_two_numbers(int &a, int &b, bool mutateOriginal)

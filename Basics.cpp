@@ -25,15 +25,30 @@ void VariablesAndDataTypes::swap_helper(int& a, int& b)
 
 std::string Conditionals::determine_parity(int num)
 {
-    if (num % 2 == 0)
-    {
-        return "even";
-    }
-    else
-    {
-        return "odd";
-    }
+	if (num % 2 == 0)
+	{
+		return "even";
+	}
+	else
+	{
+		return "odd";
+	}
+};
+
+bool Loops::is_prime(int n)
+{
+	if (n <= 1) return false;
+	for (size_t i = 2; i * i <= n; i++)
+	{
+		if (n % i == 0) return false;
+	}
+	return true;
 }
+
+void Loops::get_prime_numbers(int n)
+{
+}
+
 
 void print::determine_parity()
 {
@@ -53,3 +68,10 @@ void print::swap_two_numbers()
 	printf("A: %d, B: %d \n", a, b);
 }
 
+void print::prime_numbers(int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		printf("%d is %s \n", i, (Loops::is_prime(i)) ? "a prime number": "not a prime number");
+	}
+}

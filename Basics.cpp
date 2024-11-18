@@ -35,7 +35,7 @@ std::string Conditionals::determine_parity(int num)
 	}
 };
 
-bool Loops::is_prime(int n)
+bool Loops::is_prime(int n) // Trial Division Method
 {
 	if (n <= 1) return false;
 	for (size_t i = 2; i * i <= n; i++)
@@ -45,8 +45,28 @@ bool Loops::is_prime(int n)
 	return true;
 }
 
-void Loops::get_prime_numbers(int n)
-{
+std::vector<int> Loops::get_prime_numbers(int n)
+{ 
+	// Using Sieve of Eratosthenes Algorithm
+	std::vector<bool> is_prime(n + 1, true);
+	is_prime[0] = is_prime[1] = false;
+	for (int i = 2; i * i <= n; i++)
+	{
+		if (is_prime[i])
+		{
+			for (int j = i * i; j <= n; j += i)
+				is_prime[j] = false;
+		}
+	}
+	std::vector<int> primes;
+	for (int i = 2; i <= n; i++) {
+		if (is_prime[i]) {
+			primes.push_back(i);
+		}
+	}
+
+
+	return primes;
 }
 
 
@@ -73,5 +93,9 @@ void print::prime_numbers(int n)
 	for (int i = 0; i < n; i++)
 	{
 		printf("%d is %s \n", i, (Loops::is_prime(i)) ? "a prime number": "not a prime number");
+	}
+	std::cout << "Prime numbers up to 20: ";
+	for (int prime : Loops::get_prime_numbers(20)) {
+		std::cout << prime << " ";
 	}
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <cstdio>
+#include <vector>
 
 namespace print
 {
@@ -28,5 +29,5 @@ class Loops
 {
 public:
 	static bool is_prime(int n);
-	static void get_prime_numbers(int n);
+	static std::vector<int> get_prime_numbers(int n);
 };

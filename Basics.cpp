@@ -120,8 +120,8 @@ void print::find_min_and_max()
 std::map<std::string, int> Arrays::get_min_and_max(std::vector<int> arr)
 {
 	std::map<std::string, int> result;
-	result["min"] = 0;
-	result["max"] = 0;
+	result["min"] = arr[0];
+	result["max"] = arr[0];
 	for (int num : arr)
 	{
 		if (num > result["max"]) {

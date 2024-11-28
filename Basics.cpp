@@ -94,8 +94,44 @@ void print::prime_numbers(int n)
 	{
 		printf("%d is %s \n", i, (Loops::is_prime(i)) ? "a prime number": "not a prime number");
 	}
-	std::cout << "Prime numbers up to 20: ";
-	for (int prime : Loops::get_prime_numbers(20)) {
+	std::cout << "Prime numbers up to " << n << ":";
+	for (int prime : Loops::get_prime_numbers(n)) {
 		std::cout << prime << " ";
 	}
+}
+
+void print::find_min_and_max()
+{
+	std::vector<int> arr = { 12, 7, 15, 3, 10 };
+	std::cout << "Array: ";
+	for (int num : arr) {
+		std::cout << num << " ";
+	}
+	std::cout << "\n";
+	std::cout << "Using custom function: \n";
+	std::map<std::string, int> res = Arrays::get_min_and_max(arr);
+	std::cout << "Minimum: " << res["min"] << "\n";
+	std::cout << "Maximum: " << res["max"] << "\n";
+	std::cout << "Using build-in function: \n";
+	std::cout << "Minimum: " << *std::min_element(arr.begin(), arr.end()) << "\n";
+	std::cout << "Maximum: " << *std::max_element(arr.begin(), arr.end()) << "\n";
+}
+
+std::map<std::string, int> Arrays::get_min_and_max(std::vector<int> arr)
+{
+	std::map<std::string, int> result;
+	result["min"] = 0;
+	result["max"] = 0;
+	for (int num : arr)
+	{
+		if (num > result["max"]) {
+			result["max"]= num;
+		}
+		if (num < result["min"])
+		{
+			result["min"] = num;
+		}
+	}
+	
+	return result;
 }

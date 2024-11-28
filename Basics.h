@@ -10,6 +10,7 @@ namespace print
 	void swap_two_numbers();
 	void prime_numbers(int n);
 	void find_min_and_max();
+	void calc_factorial();
 };
 
 class Conditionals
@@ -39,3 +40,5 @@ class Arrays
 public:
 	static std::map<std::string, int> get_min_and_max(std::vector<int> arr);
 };
+
+static int factorial(int n);

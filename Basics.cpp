@@ -117,6 +117,11 @@ void print::find_min_and_max()
 	std::cout << "Maximum: " << *std::max_element(arr.begin(), arr.end()) << "\n";
 }
 
+void print::calc_factorial()
+{
+	std::cout << factorial(5);
+}
+
 std::map<std::string, int> Arrays::get_min_and_max(std::vector<int> arr)
 {
 	std::map<std::string, int> result;
@@ -134,4 +139,16 @@ std::map<std::string, int> Arrays::get_min_and_max(std::vector<int> arr)
 	}
 	
 	return result;
+}
+
+int factorial(int n) {
+	if (n < 0) {
+		throw std::invalid_argument("Factorial is not defined for negative numbers.");
+	}
+
+	if (n <= 1) {
+		return 1;
+	}
+
+	return n * factorial(n - 1);
 }

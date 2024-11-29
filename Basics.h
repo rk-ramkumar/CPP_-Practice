@@ -41,4 +41,5 @@ public:
 	static std::map<std::string, int> get_min_and_max(std::vector<int> arr);
 };
 
-static int factorial(int n);
+int factorial(int n);
+

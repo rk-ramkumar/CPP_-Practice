@@ -7,5 +7,6 @@ int main()
 	print::prime_numbers(10);
 	print::find_min_and_max();
 	print::calc_factorial();
+	print::dm_sum_of_elements();
 	return 0;
 }

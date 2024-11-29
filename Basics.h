@@ -11,6 +11,7 @@ namespace print
 	void prime_numbers(int n);
 	void find_min_and_max();
 	void calc_factorial();
+	void dm_sum_of_elements();
 };
 
 class Conditionals
@@ -43,3 +44,4 @@ public:
 
 int factorial(int n);
 
+int sum(int* arr, int size);

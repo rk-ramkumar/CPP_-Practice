@@ -119,7 +119,25 @@ void print::find_min_and_max()
 
 void print::calc_factorial()
 {
-	std::cout << factorial(5);
+	std::cout << factorial(5) << "\n";
+}
+
+void print::dm_sum_of_elements()
+{
+	int n;
+	std::cout << "Enter the size of an array: ";
+	std::cin >> n;
+	std::cout << "Size of an array is: " << n;
+	int* arr = new int[n];
+	for (int i = 0; i < n; i++)
+	{
+		int num;
+		std::cout << "Enter " << i + 1 << " item value: ";
+		std::cin >> num;
+		arr[i] = num;
+	}
+	std::cout << "Sum of the elements is: " << sum(arr, n);
+	delete[] arr;
 }
 
 std::map<std::string, int> Arrays::get_min_and_max(std::vector<int> arr)
@@ -151,4 +169,14 @@ int factorial(int n) {
 	}
 
 	return n * factorial(n - 1);
+}
+
+int sum(int* arr, int size)
+{
+	int res = 0;
+	for (int i=0; i < size; i++)
+	{
+		res += arr[i];
+	}
+	return res;
 }

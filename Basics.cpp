@@ -127,14 +127,12 @@ void print::dm_sum_of_elements()
 	int n;
 	std::cout << "Enter the size of an array: ";
 	std::cin >> n;
-	std::cout << "Size of an array is: " << n;
+	std::cout << "Size of an array is: " << n << "\n";
 	int* arr = new int[n];
 	for (int i = 0; i < n; i++)
 	{
-		int num;
 		std::cout << "Enter " << i + 1 << " item value: ";
-		std::cin >> num;
-		arr[i] = num;
+		std::cin >> arr[i];
 	}
 	std::cout << "Sum of the elements is: " << sum(arr, n);
 	delete[] arr;

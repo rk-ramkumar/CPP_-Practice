@@ -178,3 +178,28 @@ int sum(int* arr, int size)
 	}
 	return res;
 }
+
+
+void Car::accelerate(int value)
+{
+	if (value < 0) {
+		printf("Invalid acceleration %d\n", value);
+		return;
+	}
+	setSpeed(value);
+}
+
+void Car::brake(int value)
+{
+	if (value < 0) {
+		printf("Invalid brake value %d\n", value);
+		return;
+	}
+	setSpeed(-value);
+}
+
+
+int Car::getSpeed() const
+{
+	return speed;
+}

@@ -42,6 +42,23 @@ public:
 	static std::map<std::string, int> get_min_and_max(std::vector<int> arr);
 };
 
+class Car
+{
+
+private:
+	void setSpeed(int value) {
+		speed = (speed + value < 0) ? 0 : speed + value;
+	}
+protected:
+	int speed;
+public:
+	void accelerate(int value);
+	void brake(int value);
+	int getSpeed() const;
+	Car(int initialSpeed) : speed((initialSpeed < 0) ? 0 : initialSpeed) {}
+
+};
+
 int factorial(int n);
 
 int sum(int* arr, int size);

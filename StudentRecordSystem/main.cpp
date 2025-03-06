@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
+#include <fstream>
 struct Student {
     int id;
     std::string name;
@@ -10,6 +10,7 @@ struct Student {
     float grade;
 };
 
+std::string FileName = "temp/student.txt";
 std::vector<Student> students;
 
 // Helper methods
@@ -56,8 +57,6 @@ void displayStudents()
         std::cout << "ID: " << student.id << ", Name: " << student.name << ", Age: " << student.age << ", Grade: " << student.grade << "\n";
     };
 };
-
-
 
 void searchStudent()
 {
@@ -113,13 +112,49 @@ void deleteStudent()
     std::cout << "Student not found!\n";
 };
 
+void saveToFile()
+{
+    std::ofstream outFile(FileName);
+
+    if(!outFile)
+    {
+        std::cout << "Error Opening file for writing!\n";
+        return;
+    }
+    for(const auto student: students)
+    {
+        outFile << student.id << " " << student.name << " " << student.age << " " << student.grade << "\n"; 
+    }
+    outFile.close();
+    std::cout << "Data Saved Successfully!\n";
+};
+
+void loadFromFile()
+{
+    std::ifstream inFile(FileName);
+    if(!inFile)
+    {
+        std::cout << "No previous data found.\n";
+        return;
+    }
+    Student student;
+    while (inFile >> student.id) {
+        inFile.ignore();
+        inFile >> student.name >> student.age >> student.grade;
+        students.push_back(student);
+    }
+
+    inFile.close();
+};
+
 int main()
 {
+    loadFromFile();
     int choice;
 
     do
     {
-        std::cout << "\n1. Add Student\n2. Display Students\n3. Search Student\n4. Update Student\n5. Delete Student\n6. Exit\nChoose: ";
+        std::cout << "\n1. Add Student\n2. Display Students\n3. Search Student\n4. Update Student\n5. Delete Student\n6. Save & Exit\nChoose: ";
         std::cin >> choice;
         switch (choice) {
             case 1: addStudent(); break;
@@ -127,7 +162,7 @@ int main()
             case 3: searchStudent(); break;
             case 4: updateStudent(); break;
             case 5: deleteStudent(); break;
-            case 6: std::cout << "Exiting... \n"; break;
+            case 6: saveToFile(); std::cout << "Exiting... \n"; break;
             default: std::cout << "Invalid Choice! Try Again.\n";
         }
     }while(choice != 6);

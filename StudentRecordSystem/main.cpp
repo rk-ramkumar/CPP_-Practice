@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -87,10 +88,30 @@ void updateStudent()
         if(updateId == student.id)
         {
             student = getStudentDetails();
+            std::cout << "Student Updated Successfully!\n";
+            return;
         }
     }
-    std::cout << "Student Updated Successfully!\n";
+    std::cout << "Student not found!\n";
 }
+
+void deleteStudent()
+{
+    int deleteId;
+    std::cout << "Enter Student ID To Search: ";
+    std::cin >> deleteId;
+
+    for(size_t i = 0; i < students.size(); i++)
+    {
+        if(students[i].id == deleteId)
+        {
+            students.erase(students.begin() + 1);
+            std::cout << "Student deleted successfully!\n";
+            return;
+        }
+    }
+    std::cout << "Student not found!\n";
+};
 
 int main()
 {
@@ -98,17 +119,18 @@ int main()
 
     do
     {
-        std::cout << "\n1. Add Student\n2. Display Students\n3. Search Student\n4. Update Student\n5. Exit\nChoose: ";
+        std::cout << "\n1. Add Student\n2. Display Students\n3. Search Student\n4. Update Student\n5. Delete Student\n6. Exit\nChoose: ";
         std::cin >> choice;
         switch (choice) {
             case 1: addStudent(); break;
             case 2: displayStudents(); break;
             case 3: searchStudent(); break;
             case 4: updateStudent(); break;
-            case 5: std::cout << "Exiting... \n"; break;
+            case 5: deleteStudent(); break;
+            case 6: std::cout << "Exiting... \n"; break;
             default: std::cout << "Invalid Choice! Try Again.\n";
         }
-    }while(choice != 3);
+    }while(choice != 6);
 
     return 0;
 }

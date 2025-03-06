@@ -11,20 +11,34 @@ struct Student {
 
 std::vector<Student> students;
 
-void addStudent()
+// Helper methods
+void printStudentDetail(Student student)
 {
-    Student s;
+    std::cout << "ID: " << student.id << ", Name: " << student.name << ", Age: " << student.age << ", Grade: " << student.grade << "\n";
+};
+
+Student getStudentDetails()
+{
+    Student student;
     std::cout << "Enter ID: ";
-    std::cin >> s.id;
+    std::cin >> student.id;
     std::cout << "Enter Name: ";
     std::cin.ignore();
-    std::getline(std::cin, s.name);
+    std::getline(std::cin, student.name);
     std::cout << "Enter Age: ";
-    std::cin >> s.age;
+    std::cin >> student.age;
     std:: cout << "Enter Grade: ";
-    std::cin >> s.grade;
+    std::cin >> student.grade;
 
-    students.push_back(s);
+    return student;
+};
+
+// Main methods
+void addStudent()
+{
+    Student student = getStudentDetails();
+
+    students.push_back(student);
     std::cout << "Student added successfully!\n";
 };
 
@@ -42,10 +56,7 @@ void displayStudents()
     };
 };
 
-void printStudentDetail(Student student)
-{
-    std::cout << "ID: " << student.id << ", Name: " << student.name << ", Age: " << student.age << ", Grade: " << student.grade << "\n";
-};
+
 
 void searchStudent()
 {

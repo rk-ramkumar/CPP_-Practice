@@ -30,11 +30,39 @@ void addStudent()
 
 void displayStudents()
 {
+    if(students.empty())
+    {
+        std::cout << "\nNo students available\n";
+        return;
+    }
     std::cout << "\n--- Student Records ---\n";
     for(const auto student : students)
     {
         std::cout << "ID: " << student.id << ", Name: " << student.name << ", Age: " << student.age << ", Grade: " << student.grade << "\n";
     };
+};
+
+void printStudentDetail(Student student)
+{
+    std::cout << "ID: " << student.id << ", Name: " << student.name << ", Age: " << student.age << ", Grade: " << student.grade << "\n";
+};
+
+void searchStudent()
+{
+    int studentId;
+    std::cout << "Enter Student ID To Search: ";
+    std::cin >> studentId;
+    
+    for(const auto student: students)
+    {
+        if(student.id == studentId)
+        {
+            printStudentDetail(student);
+            return;
+        }
+    }
+
+    std::cout << "Student Not Found\n";
 };
 
 int main()

@@ -39,14 +39,14 @@ void addStudent()
     Student student = getStudentDetails();
 
     students.push_back(student);
-    std::cout << "Student added successfully!\n";
+    std::cout << "Student Added Successfully!\n";
 };
 
 void displayStudents()
 {
     if(students.empty())
     {
-        std::cout << "\nNo students available\n";
+        std::cout << "\nNo Students Available\n";
         return;
     }
     std::cout << "\n--- Student Records ---\n";
@@ -76,19 +76,37 @@ void searchStudent()
     std::cout << "Student Not Found\n";
 };
 
+void updateStudent()
+{
+    int updateId;
+    std::cout << "Enter Student ID To Search: ";
+    std::cin >> updateId;
+
+    for(auto student: students)
+    {
+        if(updateId == student.id)
+        {
+            student = getStudentDetails();
+        }
+    }
+    std::cout << "Student Updated Successfully!\n";
+}
+
 int main()
 {
     int choice;
 
     do
     {
-        std::cout << "\n1. Add Student\n2. Display Students\n3. Exit\nChoose: ";
+        std::cout << "\n1. Add Student\n2. Display Students\n3. Search Student\n4. Update Student\n5. Exit\nChoose: ";
         std::cin >> choice;
         switch (choice) {
             case 1: addStudent(); break;
             case 2: displayStudents(); break;
-            case 3: std::cout << "Exiting... \n"; break;
-            default: std::cout << "Invalid choice! Try again.\n";
+            case 3: searchStudent(); break;
+            case 4: updateStudent(); break;
+            case 5: std::cout << "Exiting... \n"; break;
+            default: std::cout << "Invalid Choice! Try Again.\n";
         }
     }while(choice != 3);
 

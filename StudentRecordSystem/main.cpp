@@ -65,7 +65,7 @@ void searchStudent()
     std::cout << "Enter Student ID To Search: ";
     std::cin >> studentId;
     
-    for(const auto student: students)
+    for(auto student: students)
     {
         if(student.id == studentId)
         {
@@ -83,7 +83,7 @@ void updateStudent()
     std::cout << "Enter Student ID To Search: ";
     std::cin >> updateId;
 
-    for(auto student: students)
+    for(auto& student: students)
     {
         if(updateId == student.id)
         {

@@ -21,7 +21,7 @@ void addStudent()
     std::getline(std::cin, s.name);
     std::cout << "Enter Age: ";
     std::cin >> s.age;
-    std:: cout << "Enter grade: ";
+    std:: cout << "Enter Grade: ";
     std::cin >> s.grade;
 
     students.push_back(s);
@@ -50,7 +50,6 @@ int main()
             case 2: displayStudents(); break;
             case 3: std::cout << "Exiting... \n"; break;
             default: std::cout << "Invalid choice! Try again.\n";
-        
         }
     }while(choice != 3);
 

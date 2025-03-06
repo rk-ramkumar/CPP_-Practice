@@ -1,8 +1,10 @@
+#include <algorithm>
 #include <cstddef>
 #include <iostream>
 #include <string>
 #include <vector>
 #include <fstream>
+#include <iomanip> 
 struct Student {
     int id;
     std::string name;
@@ -51,11 +53,26 @@ void displayStudents()
         std::cout << "\nNo Students Available\n";
         return;
     }
-    std::cout << "\n--- Student Records ---\n";
-    for(const auto student : students)
-    {
-        std::cout << "ID: " << student.id << ", Name: " << student.name << ", Age: " << student.age << ", Grade: " << student.grade << "\n";
-    };
+     std::sort(students.begin(), students.end(), [](const Student& a, const Student& b) {
+        return a.id < b.id;  // Sort in ascending order by ID
+    });
+
+    std::cout << "\n-----------------------------------------------------------\n";
+    std::cout << std::setw(10) << "ID" 
+              << std::setw(20) << "Name" 
+              << std::setw(10) << "Age" 
+              << std::setw(10) << "Grade" << "\n";
+    std::cout << "-----------------------------------------------------------\n";
+
+    for (const auto& s : students) {
+        std::cout << std::setw(10) << s.id
+                  << std::setw(20) << s.name
+                  << std::setw(10) << s.age
+                  << std::setw(10) << std::fixed << std::setprecision(2) << s.grade
+                  << "\n";
+    }
+
+    std::cout << "-----------------------------------------------------------\n";
 };
 
 void searchStudent()

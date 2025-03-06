@@ -105,7 +105,7 @@ void deleteStudent()
     {
         if(students[i].id == deleteId)
         {
-            students.erase(students.begin() + 1);
+            students.erase(students.begin() + i);
             std::cout << "Student deleted successfully!\n";
             return;
         }

@@ -7,3 +7,8 @@ struct Student {
     int age;
     float grade;
 };
+
+int main()
+{
+    return 0;
+}

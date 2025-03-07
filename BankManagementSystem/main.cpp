@@ -24,8 +24,20 @@ class Account{
                 std::cout << holderName << " withdrew " << amount << ". Remaining Balance: " << balance << "\n";
             }
         };
-        void deposit(int amount);
-        void checkBalance();
+        void deposit(int amount)
+        {
+            if(amount <= 0)
+            {
+                std::cout << "Please Enter a Valid Amount\n";
+                return;
+            }
+            balance += amount;
+            std::cout << holderName << " deposited " << amount << ". New Balance: " << balance << "\n";
+        };
+        void checkBalance()
+        {
+            std::cout << "Account Holder: " << holderName << ".\nBalance: " << balance << "\n";
+        };
         
     protected:
         std::string holderName;
@@ -37,16 +49,15 @@ class Account{
 class CurrentAccount: public Account 
 {
     public:
-        CurrentAccount(std::string name, int initialPayment = 0): Account(name, initialPayment, 1000) {} ;
+        CurrentAccount(std::string name, int initialPayment = 0, int minBal = 1000): Account(name, initialPayment, minBal) {} ;
 };
 
 class SavingAccount: public Account 
 {
     public:
-        SavingAccount(std::string name, int initialPayment = 0): Account(name, initialPayment) {
-            interestRate = 5;
-            transactionLimit = 10;
-        }
+        SavingAccount(std::string name, int initialPayment = 0, int minBal = 0, int rate = 5, int limit = 10): 
+        Account(name, initialPayment, minBal), interestRate(rate), transactionLimit(limit) {}
+
         void withdraw(int amount) override{
             static int transactions = 0;
             if (transactions >= transactionLimit){
@@ -66,5 +77,17 @@ int Account::NextId = 1000;
 
 int main()
 {
+    CurrentAccount ca("ram", 2000);
+    ca.deposit(500);
+    ca.withdraw(1000);
+    ca.checkBalance();
+
+    SavingAccount sa("Alice", 3000);
+    sa.withdraw(100);
+    sa.withdraw(200);
+    sa.withdraw(300);
+    sa.withdraw(400);
+    sa.withdraw(500);
+    sa.withdraw(600);
     return 0;
 }

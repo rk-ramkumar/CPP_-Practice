@@ -10,7 +10,7 @@ class Account{
             id = NextId++;
         }
         
-        void withdraw(int amount)
+        virtual void withdraw(int amount)
         {
             if(amount <= 0)
             {
@@ -47,11 +47,22 @@ class SavingAccount: public Account
             interestRate = 5;
             transactionLimit = 10;
         }
+        void withdraw(int amount) override{
+            static int transactions = 0;
+            if (transactions >= transactionLimit){
+                std::cout << "Withdrawal failed! Transaction limit exceeded.\n";
+                return;
+            }
+
+            Account::withdraw(amount);
+            transactions++;
+        }
     private:
         int interestRate;
         int transactionLimit;
 };
 
+int Account::NextId = 1000;
 
 int main()
 {

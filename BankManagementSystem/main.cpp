@@ -1,11 +1,29 @@
 
+#include <iostream>
 #include <string>
 
 class Account{
+    private:
+        static int NextId;
     public:
-        Account(std::string name, int initialPayment = 0, int minBal = 0): holderName(name), balance(initialPayment), minimumBalance(minBal) {}
+        Account(std::string name, int initialPayment = 0, int minBal = 0): holderName(name), balance(initialPayment), minimumBalance(minBal) {
+            id = NextId++;
+        }
         
-        void withdraw(int amount);
+        void withdraw(int amount)
+        {
+            if(amount <= 0)
+            {
+                std::cout << "Please Enter a Valid Amount\n";
+                return;
+            }
+            if(amount > balance or balance - amount < minimumBalance){
+                std::cout << "Withdrawal failed! Insufficient funds.\n";
+            }else{
+                balance -= amount;
+                std::cout << holderName << " withdrew " << amount << ". Remaining Balance: " << balance << "\n";
+            }
+        };
         void deposit(int amount);
         void checkBalance();
         
@@ -24,7 +42,12 @@ class CurrentAccount: public Account
 
 class SavingAccount: public Account 
 {
-    protected:
+    public:
+        SavingAccount(std::string name, int initialPayment = 0): Account(name, initialPayment) {
+            interestRate = 5;
+            transactionLimit = 10;
+        }
+    private:
         int interestRate;
         int transactionLimit;
 };

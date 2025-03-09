@@ -1,6 +1,9 @@
 
+#include <algorithm>
 #include <iostream>
+#include <memory>
 #include <string>
+#include <vector>
 
 class Account{
     private:
@@ -38,6 +41,9 @@ class Account{
         {
             std::cout << "Account Holder: " << holderName << ".\nBalance: " << balance << "\n";
         };
+
+        int getId() const { return id; }
+        std::string getName() const { return holderName; }
         
     protected:
         std::string holderName;
@@ -74,6 +80,105 @@ class SavingAccount: public Account
 };
 
 int Account::NextId = 1000;
+
+class Bank
+{
+    private:
+        std::vector<std::unique_ptr<Account>> accounts;
+    
+    public:
+        void createAccount()
+        {
+            std::string name;
+            int type, initialDeposit;
+
+            std::cout << "Enter Account Holder Name: ";
+            std::cin >> name;
+            std::cout << "Enter Initial Deposit: ";
+            std::cin >> initialDeposit;
+            std::cout << "Select Account Type (1 = Current, 2 = Savings): ";
+            std::cin >> type;
+
+            std::unique_ptr<Account> newAccount = nullptr;
+            
+            switch (type) {
+                case 1: newAccount = std::make_unique<Account>(name, initialDeposit); break;
+                case 2: newAccount = std::make_unique<Account>(name, initialDeposit); break;
+                default: std::cout << "Invalid Choice!\n"; return;
+            }
+            accounts.push_back(std::move(newAccount));
+            std::cout << "Account Created Successfully! Account ID: " << newAccount->getId() << "\n";
+        }
+
+        void updateAccount()
+        {
+            int updateId;
+            int choice, amount;
+            std::cout << "Enter Account ID to update:";
+            std::cin >> updateId;
+
+            Account* acc = findAccount(updateId);
+
+            if(!acc){
+                std::cout << "Account not found!\n";
+                return;
+            }
+
+            std::cout << "1. Deposit\n2. Withdraw\nEnter your choice: ";
+            std::cin >> choice;
+
+            std::cout << "Enter Amount: ";
+            std::cin >> amount;
+
+            if (choice == 1) {
+                acc->deposit(amount);
+            } else if (choice == 2) {
+                acc->withdraw(amount);
+            } else {
+                std::cout << "Invalid choice!\n";
+            }
+        };
+        void deleteAccount() {
+            int id;
+            std::cout << "Enter Account ID to delete: ";
+            std::cin >> id;
+            auto it = std::find_if(accounts.begin(), accounts.end(),[&](const std::unique_ptr<Account>& acc){
+                return acc->getId() == id;
+            });
+
+            if(it == accounts.end()){
+                std::cout << "Account not found!\n";
+                return;
+            }
+            accounts.erase(it);
+            std::cout << "Account deleted successfully!\n";    
+        };
+
+        void displayAccounts() {
+            if (accounts.empty()) {
+                std::cout << "No accounts available!\n";
+                return;
+            }
+    
+            for (const auto& acc : accounts) {
+                acc->checkBalance();
+                std::cout << "----------------------\n";
+            }
+        }
+
+        Account* findAccount(int id)
+        {
+            for(std::unique_ptr<Account> &account: accounts)
+            {
+                if(id == account->getId())
+                {
+                    return account.get();
+                }
+            };
+
+            return nullptr;
+        };
+};
 
 int main()
 {

@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+
 class Account{
     private:
         static int NextId;
@@ -52,6 +53,9 @@ class Account{
         int minimumBalance;
     
 };
+
+int Account::NextId = 1000;
+
 class CurrentAccount: public Account 
 {
     public:
@@ -78,8 +82,6 @@ class SavingAccount: public Account
         int interestRate;
         int transactionLimit;
 };
-
-int Account::NextId = 1000;
 
 class Bank
 {
@@ -182,17 +184,22 @@ class Bank
 
 int main()
 {
-    CurrentAccount ca("ram", 2000);
-    ca.deposit(500);
-    ca.withdraw(1000);
-    ca.checkBalance();
+    Bank bank;
+    int choice;
 
-    SavingAccount sa("Alice", 3000);
-    sa.withdraw(100);
-    sa.withdraw(200);
-    sa.withdraw(300);
-    sa.withdraw(400);
-    sa.withdraw(500);
-    sa.withdraw(600);
+    while (true) {
+        std::cout << "\n--- Bank Management System ---\n";
+        std::cout << "1. Create Account\n2. Update Account\n3. Delete Account\n4. Display Accounts\n5. Exit\nEnter choice: ";
+        std::cin >> choice;
+
+        switch (choice) {
+            case 1: bank.createAccount(); break;
+            case 2: bank.updateAccount(); break;
+            case 3: bank.deleteAccount(); break;
+            case 4: bank.displayAccounts(); break;
+            case 5: return 0;
+            default: std::cout << "Invalid choice!\n";
+        }
+    }
     return 0;
 }

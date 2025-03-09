@@ -107,7 +107,7 @@ class Bank
                 default: std::cout << "Invalid Choice!\n"; return;
             }
             accounts.push_back(std::move(newAccount));
-            std::cout << "Account Created Successfully! Account ID: " << newAccount->getId() << "\n";
+            std::cout << "Account Created Successfully! Account ID: " << accounts.back()->getId() << "\n";
         }
 
         void updateAccount()

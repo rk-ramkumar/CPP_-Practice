@@ -21,7 +21,7 @@ class Account{
                 std::cout << "Please Enter a Valid Amount\n";
                 return;
             }
-            if(amount > balance or balance - amount < minimumBalance){
+            if(amount > balance || balance - amount < minimumBalance){
                 std::cout << "Withdrawal failed! Insufficient funds.\n";
             }else{
                 balance -= amount;
@@ -38,7 +38,7 @@ class Account{
             balance += amount;
             std::cout << holderName << " deposited " << amount << ". New Balance: " << balance << "\n";
         };
-        void checkBalance()
+        void checkBalance() const
         {
             std::cout << "Account Holder: " << holderName << ".\nBalance: " << balance << "\n";
         };

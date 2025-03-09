@@ -83,3 +83,4 @@ Makefile
 *.suo
 *.userosscache
 *.sln.docstates
+*CMakeUserPresets.json

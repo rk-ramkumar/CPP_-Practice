@@ -9,8 +9,14 @@
 class Account{
     private:
         static int NextId;
+        int id;
+        int balance;
+        int minimumBalance;
+        std::string holderName;
+        std::string type;
+
     public:
-        Account(std::string name, int initialPayment = 0, int minBal = 0): holderName(name), balance(initialPayment), minimumBalance(minBal) {
+        Account(std::string name, std::string t, int initialPayment = 0, int minBal = 0): holderName(name), type(t), balance(initialPayment), minimumBalance(minBal) {
             id = NextId++;
         }
         
@@ -45,13 +51,7 @@ class Account{
 
         int getId() const { return id; }
         std::string getName() const { return holderName; }
-        
-    protected:
-        std::string holderName;
-        int id;
-        int balance;
-        int minimumBalance;
-    
+           
 };
 
 int Account::NextId = 1000;
@@ -59,14 +59,14 @@ int Account::NextId = 1000;
 class CurrentAccount: public Account 
 {
     public:
-        CurrentAccount(std::string name, int initialPayment = 0, int minBal = 1000): Account(name, initialPayment, minBal) {} ;
+        CurrentAccount(std::string name, int initialPayment = 0, int minBal = 1000): Account(name, "C", initialPayment, minBal) {};
 };
 
 class SavingAccount: public Account 
 {
     public:
         SavingAccount(std::string name, int initialPayment = 0, int minBal = 0, int rate = 5, int limit = 10): 
-        Account(name, initialPayment, minBal), interestRate(rate), transactionLimit(limit) {}
+        Account(name, "S", initialPayment, minBal), interestRate(rate), transactionLimit(limit) {}
 
         void withdraw(int amount) override{
             static int transactions = 0;
@@ -104,11 +104,10 @@ class Bank
             std::unique_ptr<Account> newAccount = nullptr;
             
             switch (type) {
-                case 1: newAccount = std::make_unique<Account>(name, initialDeposit); break;
-                case 2: newAccount = std::make_unique<Account>(name, initialDeposit); break;
+                case 1: accounts.push_back(std::make_unique<CurrentAccount>(name, initialDeposit)); break;
+                case 2: accounts.push_back(std::make_unique<SavingAccount>(name, initialDeposit)); break;
                 default: std::cout << "Invalid Choice!\n"; return;
             }
-            accounts.push_back(std::move(newAccount));
             std::cout << "Account Created Successfully! Account ID: " << accounts.back()->getId() << "\n";
         }
 
